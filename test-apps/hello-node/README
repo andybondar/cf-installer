@@ -1,0 +1,2 @@
+Be sure you enter 'node app.js' when you push the application and cf asks you for a Custom startup command
+(I cant remember how this can be done automatically)

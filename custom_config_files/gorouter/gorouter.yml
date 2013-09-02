@@ -1,0 +1,25 @@
+status:
+  port: 8081
+  user: someuser
+  pass: somepassword
+
+nats:
+  uri: "nats://localhost:4222"
+  host:
+  user:
+  pass:
+
+logging:
+  file: /vagrant/logs/gorouter.log
+  syslog:
+  level: debug
+
+port: 80
+index: 0
+
+go_max_procs: 8
+
+publish_start_message_interval: 30
+prune_stale_droplets_interval: 30
+droplet_stale_threshold: 120
+publish_active_apps_interval: 0 # 0 means disabled

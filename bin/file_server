@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /vagrant/dea_ng
+bundle exec spec/bin/file_server.rb

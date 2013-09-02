@@ -1,0 +1,61 @@
+# See src/lib/dea/config.rb for optional config values.
+
+# Base directory for dea, application directories, dea temp files, etc. are all relative to this.
+base_dir: /tmp/dea_ng
+
+logging:
+  level: debug
+
+local_route: localhost
+
+resources:
+  memory_mb: 2048
+  memory_overcommit_factor: 2
+  disk_mb: 2048
+  disk_overcommit_factor: 2
+
+# The this flag determines whether or not this DEA should only host
+# production apps. (default: false)
+only_production_apps: false
+
+nats_uri: nats://localhost:4222/
+
+pid_filename: /tmp/dea_ng.pid
+
+warden_socket: /tmp/warden.sock
+
+evacuation_delay_secs: 5
+
+index: 0
+
+staging:
+  enabled: true
+  platform_config:
+    cache: /var/vcap/data/stager/package_cache/ruby
+  environment:
+    PATH: /usr/local/ruby/bin
+    BUILDPACK_CACHE: /var/vcap/packages/buildpack_cache
+  memory_limit_mb: 1024
+  disk_limit_mb: 2048
+  max_staging_duration: 900 # 15 minutes
+
+dea_ruby: /usr/bin/ruby
+
+# For Go-based directory server
+directory_server:
+  v1_port: 4385
+  v2_port: 5678
+  file_api_port: 1234
+  streaming_timeout: 10
+  logging:
+    level: info
+
+stacks:
+  - lucid64
+
+# Hook scripts for droplet start/stop
+# hooks:
+#   before_start: path/to/script
+#   after_start: path/to/script
+#   before_stop: path/to/script
+#   after_stop: path/to/script

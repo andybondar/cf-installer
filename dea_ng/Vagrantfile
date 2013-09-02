@@ -1,0 +1,7 @@
+Vagrant.configure("2") do |config|
+  # Build this box by running `rake test_vm`
+  config.vm.box = "ci_with_warden_prereqs"
+  config.vm.box_url = "~/boxes/ci_with_warden_prereqs.box"
+  config.ssh.username = "travis"
+  config.vm.define "dea_test_vm"
+end

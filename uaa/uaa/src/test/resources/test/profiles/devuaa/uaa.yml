@@ -1,0 +1,5 @@
+uaa.integration.test: true
+uaa:
+  host: devuaa.cloudfoundry.com
+  port: 80
+  path: /

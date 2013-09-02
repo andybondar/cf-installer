@@ -1,0 +1,25 @@
+--- 
+health_check_server: 
+  port: 2345
+logging: 
+  file: /vagrant/logs/warden.log
+  level: debug2
+network: 
+  pool_size: 256
+  pool_start_address: 10.254.0.0
+server: 
+  container_depot_path: /tmp/warden/containers
+  container_rootfs_path: /var/warden/rootfs
+  container_klass: Warden::Container::Linux
+  quota: 
+    disk_quota_enabled: true
+  job_output_limit: 10485760
+  container_grace_time: 300
+  container_rlimits: 
+    nofile: 8192
+    as: 4294967296
+    nproc: 512
+  unix_domain_permissions: 511
+user: 
+  pool_start_uid: 10000
+  pool_size: 256

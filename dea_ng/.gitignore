@@ -1,0 +1,13 @@
+go/src/github.com
+go/pkg
+go/bin
+spec_reports
+.idea
+chef/cookbooks
+.vagrant*
+dump.rdb
+tmp/**/*
+tmp/*
+!.gitkeep
+spec/fixtures/**/.git
+chef/tmp

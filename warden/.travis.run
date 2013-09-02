@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+set -x
+
+# Assumes the rootfs is already installed to /var/warden/rootfs
+# The warden test suite currently uses /tmp/warden/rootfs instead
+mkdir -p /tmp/warden
+ln -s /var/warden/rootfs /tmp/warden/rootfs
+
+# Close stdin
+exec 0>&-
+
+# Remove remnants of apparmor (specific to Travis VM)
+# sudo dpkg --purge apparmor
+
+# Install dependencies
+# sudo apt-get -y install quota
+
+cd warden
+bundle install
+rvmsudo bundle exec rake setup:bin
+rvmsudo bundle exec rake spec

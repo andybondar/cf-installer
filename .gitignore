@@ -1,0 +1,12 @@
+*~
+chef/tmp
+.vagrant*
+*.swp
+*.lock
+*#
+.#*
+logs/
+db/*.db
+.idea/
+.DS_Store
+tags

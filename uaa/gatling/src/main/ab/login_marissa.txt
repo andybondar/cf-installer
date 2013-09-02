@@ -1,0 +1,1 @@
+client_id=vmc&credentials={"username":"marissa","password":"koala"}&redirect_uri=https://uaa.cloudfoundry.com/redirect/vmc&response_type=token

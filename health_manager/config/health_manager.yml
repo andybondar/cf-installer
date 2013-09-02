@@ -1,0 +1,99 @@
+---
+# Local_route is the IP address of a well known server on your network, it
+# is used to choose the right ip address (think of hosts that have multiple nics
+# and IP addresses assigned to them) of the host running the Health Manager. Default
+# value of nil, should work in most cases.
+local_route: 127.0.0.1
+
+# NATS message bus URI, adjust as needed.
+# Can be overriden with NATS_URI env variable.
+mbus: nats://nats:nats@127.0.0.1:4222/
+
+logging:
+  level: info
+
+# pid: /var/vcap/sys/run/healthmanager2.pid
+
+# set this to your dev instance api url
+# the default for the bulk_api host is http://api.vcap.me
+bulk_api:
+  #host: http://api.vcap.me
+  #host: http://api.cf88.dev.las01.vcsops.com
+
+
+# use value "disable" to stop shadowing and start using hm_next for
+# real any other value, as well as default, will result in hm_next
+# working in shadow mode.
+# WARNING: remove legacy health_manager if disabling shadow mode for hm_next
+shadow_mode: disable
+
+intervals:
+
+  # how often the desired state is updated
+  desired_state_update: 60
+
+  # if the desired state has not been updated for this period,
+  # the desired stated is deemed lost
+  # (e.g., application has been removed from the ccdb)
+  desired_state_lost:   180
+
+  # when a database update is requested but one is in progress,
+  # the new update is postponed this many seconds
+  postpone_update:       30
+
+  # droplet is assumed lost after that many seconds of missing heartbeats
+  droplet_lost:         30
+
+  # droplets enumerated and analyzed every droplet_analysis seconds
+  droplets_analysis:    20
+
+  # when number of recent instance crashes exceeds flapping_death,
+  # the instance is declared flapping
+  flapping_death:        1
+
+  # crashes are deemed recent for the purposes of flapping
+  # determination if they happened within this timeout
+  flapping_timeout:     500
+
+  # for flapping apps, this is starting value of exponentially increasing
+  # delays before a restart attempt
+  min_restart_delay:     60
+
+  # for flapping apps, this is the maximum, capping value of the capped
+  # exponentially increasing delays before a restart attempt
+  max_restart_delay:     480
+
+  # delay time is randomized with noise not exceeding this value
+  delay_time_noise:       10
+
+  # stop attempting to restart flapping apps after this number of crashes.
+  # use negative value to never give up!
+  giveup_crash_number:     4
+
+  # a batch of start/stop requests is dequed every request_queue seconds
+  request_queue:           1
+
+  # start/stop requests are dequeued in batches of this size
+  queue_batch_size:        40
+
+  # period of inactivity after which a droplet is garbage-collected
+  droplet_gc_grace_period: 240
+
+  # how often should the gc loop for droplets run
+  droplet_gc:              300
+
+  # number of droplets objects to be published under varz[:droplets]
+  # use non-positive value to disable
+  max_droplets_in_varz:    0
+
+  # HM periodically pings NATS to see if it needs to re-subscribe to
+  # its events. This is the interval (in seconds) between those pings
+  check_nats_availability: 5
+
+# Used for /healthz and /vars endpoints. If not provided random
+# values will be generated on component start. Uncomment to use
+# static values.
+status:
+  port: 54321
+  user: thin
+  password: thin

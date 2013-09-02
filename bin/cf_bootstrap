@@ -1,0 +1,5 @@
+#!/bin/bash
+LOG_FILE="/vagrant/logs/cf_bootstrap.log"
+
+cd /vagrant
+rake cf:bootstrap >> $LOG_FILE
